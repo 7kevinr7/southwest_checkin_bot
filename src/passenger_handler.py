@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-Created on Fri Aug  6 14:56:52 2021
-
-@author: krose
+This module performs parsing of the passenger's info
 """
 
 from os import path
@@ -19,6 +16,7 @@ class NoPassengersException(Exception):
 
 
 class PassengerHandler:
+    """ This class provides a passenger handler. """
 
     def __init__(self, passengers='preferences/passengers.txt'):
         """
@@ -29,7 +27,8 @@ class PassengerHandler:
 
         passengers_path = path.join(getcwd(), passengers)
         if not path.exists(passengers_path):
-            raise NoPassengerFileException("Passengers File does not exist @: " + passengers_path)
+            raise NoPassengerFileException("Passengers File does not exist @: "
+                                           + passengers_path)
 
         passenger_data = list()
 
@@ -39,11 +38,10 @@ class PassengerHandler:
                     passenger_data.append(line.strip())
 
         if len(passenger_data) == 0:
-            raise NoPassengersException("Locations File does not contain any locations")
+            raise NoPassengersException("Passengers File does not contain any passengers")
 
         for passenger in passenger_data:
             passenger_info = [info.strip() for info in passenger.split("-")]
             first, last, confirmation = passenger_info[0], passenger_info[1], passenger_info[2]
 
-            self.passengers[first + ":" + last] = int(sub("[^0-9]", "", confirmation) if
-                                                      confirmation.strip() != "" else 0)
+            self.passengers[first + ":" + last] = confirmation.strip()

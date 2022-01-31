@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-Created on Fri Aug  6 14:56:52 2021
-
-@author: krose
+This module provides the Overseer which performs each of the bot's functions
 """
 
 import multiprocessing as mp
@@ -16,6 +13,8 @@ import src.preferences_handler as ph
 
 
 class Overseer:
+    """ This class provides the Overseer which handles all of the bot's main
+        functionality. """
 
     def __init__(self, prefs='preferences/preferences.txt'):
         """
@@ -45,7 +44,8 @@ class Overseer:
 
         except Exception as e:
             print(print_exc())
-            print(CheckIn.format_passenger_string(passenger) + ": Unable to create driver for location: ")
+            print(CheckIn.format_passenger_string(passenger)
+                  + ": Unable to create driver for location: ")
             driver = None
 
         if driver is not None:
@@ -55,6 +55,8 @@ class Overseer:
             if not checkin.execute():
                 print(CheckIn.format_passenger_string(passenger) + ": driver stopping")
                 driver.quit()
+            else:
+                print(CheckIn.format_passenger_string(passenger) + ": successfully checked in")
 
     def start(self):
         """

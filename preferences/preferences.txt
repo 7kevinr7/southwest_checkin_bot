@@ -1,7 +1,9 @@
-login, False
+#login, False
 passengers, preferences/passengers.txt
-credentials, preferences/credentials.txt
+#credentials, preferences/credentials.txt
 wait_duration, 1
 long_delay, 5
 url, https://www.southwest.com/air/check-in/
-num_refreshes, 2
+# time_start takes precedence over num_refreshes
+num_refreshes, 1
+time_start, 13:05:15-13:05:30

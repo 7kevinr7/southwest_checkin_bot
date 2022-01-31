@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-Created on Fri Aug  6 14:56:52 2021
-
-@author: krose
+This module contains the entry point for the bot
 """
 
 import src.overseer as overwatch
